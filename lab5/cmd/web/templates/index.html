@@ -1,0 +1,110 @@
+{{template "head" .}}
+<h1>Довідник Assembler</h1>
+
+<section class="card" id="categories">
+    <h2>Категорії</h2>
+    {{if eq .Section "categories"}}{{if .Error}}<p class="error">{{.Error}}</p>{{end}}{{end}}
+    <table>
+        <thead><tr><th>ID</th><th>Назва</th><th>Дії</th></tr></thead>
+        <tbody>
+        {{range .Categories}}<tr>
+            <td>{{.ID}}</td>
+            <td>{{.Name}}</td>
+            <td class="actions">
+                <a class="btn edit" href="/categories/edit?id={{.ID}}">Редагувати</a>
+                <form class="inline" method="post" action="/categories/delete"><input type="hidden" name="id" value="{{.ID}}"><button class="btn del" type="submit">Видалити</button></form>
+            </td>
+        </tr>{{else}}<tr><td class="empty" colspan="3">Категорій ще немає.</td></tr>{{end}}
+        </tbody>
+    </table>
+    <details{{if eq .Section "categories"}} open{{end}}>
+    <summary>+ Додати категорію</summary>
+    <form class="add" method="post" action="/categories">
+        {{template "fields_categories" .}}
+        <div><button class="btn save" type="submit">Додати</button></div>
+    </form>
+    </details>
+</section>
+
+<section class="card" id="elements">
+    <h2>Елементи</h2>
+    {{if eq .Section "elements"}}{{if .Error}}<p class="error">{{.Error}}</p>{{end}}{{end}}
+    <table>
+        <thead><tr><th>ID</th><th>Назва</th><th>Синтаксис</th><th>Приклад</th><th>Категорія</th><th>Дії</th></tr></thead>
+        <tbody>
+        {{range .Elements}}<tr>
+            <td>{{.ID}}</td>
+            <td>{{.Name}}</td>
+            <td><code>{{.Syntax}}</code></td>
+            <td><code>{{.Example}}</code></td>
+            <td>{{.Category}}</td>
+            <td class="actions">
+                <a class="btn edit" href="/elements/edit?id={{.ID}}">Редагувати</a>
+                <form class="inline" method="post" action="/elements/delete"><input type="hidden" name="id" value="{{.ID}}"><button class="btn del" type="submit">Видалити</button></form>
+            </td>
+        </tr>{{else}}<tr><td class="empty" colspan="6">Елементів ще немає.</td></tr>{{end}}
+        </tbody>
+    </table>
+    <details{{if eq .Section "elements"}} open{{end}}>
+    <summary>+ Додати елемент</summary>
+    <form class="add" method="post" action="/elements">
+        {{template "fields_elements" .}}
+        <div><button class="btn save" type="submit">Додати</button></div>
+    </form>
+    </details>
+</section>
+
+<section class="card" id="parameters">
+    <h2>Параметри</h2>
+    {{if eq .Section "parameters"}}{{if .Error}}<p class="error">{{.Error}}</p>{{end}}{{end}}
+    <table>
+        <thead><tr><th>ID</th><th>Назва</th><th>Одиниці</th><th>Дії</th></tr></thead>
+        <tbody>
+        {{range .Parameters}}<tr>
+            <td>{{.ID}}</td>
+            <td>{{.Name}}</td>
+            <td>{{if .Units}}{{.Units}}{{else}}—{{end}}</td>
+            <td class="actions">
+                <a class="btn edit" href="/parameters/edit?id={{.ID}}">Редагувати</a>
+                <form class="inline" method="post" action="/parameters/delete"><input type="hidden" name="id" value="{{.ID}}"><button class="btn del" type="submit">Видалити</button></form>
+            </td>
+        </tr>{{else}}<tr><td class="empty" colspan="4">Параметрів ще немає.</td></tr>{{end}}
+        </tbody>
+    </table>
+    <details{{if eq .Section "parameters"}} open{{end}}>
+    <summary>+ Додати параметр</summary>
+    <form class="add" method="post" action="/parameters">
+        {{template "fields_parameters" .}}
+        <div><button class="btn save" type="submit">Додати</button></div>
+    </form>
+    </details>
+</section>
+
+<section class="card" id="element-parameters">
+    <h2>Значення параметрів елементів</h2>
+    {{if eq .Section "element-parameters"}}{{if .Error}}<p class="error">{{.Error}}</p>{{end}}{{end}}
+    <table>
+        <thead><tr><th>ID</th><th>Елемент</th><th>Параметр</th><th>Значення</th><th>Одиниці</th><th>Дії</th></tr></thead>
+        <tbody>
+        {{range .Links}}<tr>
+            <td>{{.ID}}</td>
+            <td>{{.Element}}</td>
+            <td>{{.Parameter}}</td>
+            <td>{{.Value}}</td>
+            <td>{{if .Units}}{{.Units}}{{else}}—{{end}}</td>
+            <td class="actions">
+                <a class="btn edit" href="/element-parameters/edit?id={{.ID}}">Редагувати</a>
+                <form class="inline" method="post" action="/element-parameters/delete"><input type="hidden" name="id" value="{{.ID}}"><button class="btn del" type="submit">Видалити</button></form>
+            </td>
+        </tr>{{else}}<tr><td class="empty" colspan="6">Значень ще немає.</td></tr>{{end}}
+        </tbody>
+    </table>
+    <details{{if eq .Section "element-parameters"}} open{{end}}>
+    <summary>+ Додати значення параметра елементу</summary>
+    <form class="add" method="post" action="/element-parameters">
+        {{template "fields_element_parameters" .}}
+        <div><button class="btn save" type="submit">Додати</button></div>
+    </form>
+    </details>
+</section>
+{{template "foot" .}}

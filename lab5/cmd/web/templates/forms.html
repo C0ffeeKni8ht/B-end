@@ -1,0 +1,35 @@
+{{/* Поля форм — спільні для додавання (index.html) та редагування (edit.html). */}}
+
+{{define "fields_categories"}}
+<label>Назва <input type="text" name="name" placeholder="Назва категорії" value="{{.Values.name}}" required></label>
+{{end}}
+
+{{define "fields_elements"}}
+<label>Назва <input type="text" name="name" placeholder="Напр. MOV" value="{{.Values.name}}" required></label>
+<label>Синтаксис <input type="text" name="syntax" placeholder="Напр. MOV приймач, джерело" value="{{.Values.syntax}}" required></label>
+<label>Приклад <input type="text" name="example" placeholder="Напр. mov eax, 5" value="{{.Values.example}}" required></label>
+<label>Категорія
+    <select name="categoryId" required>
+        {{range .Categories}}<option value="{{.ID}}"{{if eq (printf "%d" .ID) $.Values.categoryId}} selected{{end}}>{{.Name}}</option>{{end}}
+    </select>
+</label>
+{{end}}
+
+{{define "fields_parameters"}}
+<label>Назва <input type="text" name="name" placeholder="Назва параметра" value="{{.Values.name}}" required></label>
+<label>Одиниці виміру (необов'язково) <input type="text" name="units" placeholder="Напр. біт" value="{{.Values.units}}"></label>
+{{end}}
+
+{{define "fields_element_parameters"}}
+<label>Елемент
+    <select name="elementId" required>
+        {{range .Elements}}<option value="{{.ID}}"{{if eq (printf "%d" .ID) $.Values.elementId}} selected{{end}}>{{.Name}}</option>{{end}}
+    </select>
+</label>
+<label>Параметр
+    <select name="parameterId" required>
+        {{range .Parameters}}<option value="{{.ID}}"{{if eq (printf "%d" .ID) $.Values.parameterId}} selected{{end}}>{{.Name}}{{if .Units}} ({{.Units}}){{end}}</option>{{end}}
+    </select>
+</label>
+<label>Значення <input type="text" name="value" placeholder="Значення" value="{{.Values.value}}" required></label>
+{{end}}

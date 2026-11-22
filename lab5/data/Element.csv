@@ -1,0 +1,6 @@
+id,name,syntax,example,category_id
+1,MOV,"MOV приймач, джерело","mov eax, 5",1
+2,ADD,"ADD приймач, джерело","add eax, ebx",2
+3,section .data,section ім'я_секції,section .data,3
+4,CMP + JNE,"CMP a, b / JNE мітка","cmp eax, 0 / jne not_zero",4
+5,LOOP,LOOP мітка,loop next_item,4

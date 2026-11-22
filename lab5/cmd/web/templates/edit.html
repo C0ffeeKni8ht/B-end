@@ -1,0 +1,19 @@
+{{template "head" .}}
+<h1>Довідник Assembler</h1>
+
+<section class="card">
+    <h2>Редагування: {{if eq .Entity "categories"}}категорія{{else if eq .Entity "elements"}}елемент{{else if eq .Entity "parameters"}}параметр{{else}}значення параметра елемента{{end}} №{{.ID}}</h2>
+    {{if .Error}}<p class="error">{{.Error}}</p>{{end}}
+    <form class="add" method="post" action="/{{.Entity}}/edit?id={{.ID}}">
+        {{if eq .Entity "categories"}}{{template "fields_categories" .}}
+        {{else if eq .Entity "elements"}}
+        {{template "fields_elements" .}}
+        {{else if eq .Entity "parameters"}}{{template "fields_parameters" .}}
+        {{else}}{{template "fields_element_parameters" .}}{{end}}
+        <div>
+            <button class="btn save" type="submit">Зберегти</button>
+            <a class="btn cancel" href="/#{{.Entity}}">Скасувати</a>
+        </div>
+    </form>
+</section>
+{{template "foot" .}}

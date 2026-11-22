@@ -1,0 +1,40 @@
+{{define "head"}}<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Довідник Assembler</title>
+    <style>
+        :root { --blue: #2c5aa0; --red: #c0392b; --ink: #1f3b63; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #f3f4f6; color: #222; font: 13px/1.45 system-ui, "Segoe UI", Arial, sans-serif; }
+        main { max-width: 780px; margin: 0 auto; padding: 24px 16px 48px; }
+        h1 { margin: 0 0 20px; font-size: 20px; color: var(--ink); }
+        .card { background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0, 0, 0, .12); padding: 18px 20px; margin: 0 0 22px; }
+        .card h2 { margin: 0 0 12px; font-size: 15px; color: var(--ink); }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th { text-align: left; color: var(--ink); padding: 6px 8px; border-bottom: 2px solid #e5e7eb; }
+        td { padding: 7px 8px; border-bottom: 1px solid #eceef1; vertical-align: middle; }
+        td.empty { color: #8a919e; text-align: center; }
+        code { font: 11px Consolas, monospace; background: #f1f2f5; padding: 1px 4px; border-radius: 3px; }
+        .btn { display: inline-block; border: 0; border-radius: 3px; color: #fff; font: inherit; font-size: 11px; padding: 4px 9px; cursor: pointer; text-decoration: none; }
+        .btn.edit, .btn.save { background: var(--blue); }
+        .btn.del { background: var(--red); }
+        .btn.cancel { background: #7b8494; }
+        form.inline { display: inline; margin: 0; }
+        details { margin-top: 14px; }
+        summary { cursor: pointer; color: var(--blue); font-weight: 600; }
+        .add { display: grid; gap: 8px; margin-top: 10px; max-width: 420px; }
+        .add label { display: grid; gap: 3px; color: var(--ink); font-weight: 600; font-size: 12px; }
+        input, select { padding: 6px 8px; border: 1px solid #cbd0d8; border-radius: 4px; font: inherit; font-weight: 400; background: #fff; }
+        .error { margin: 0 0 10px; padding: 7px 10px; border-radius: 4px; background: #fdecea; border: 1px solid #f1b5ae; color: #8a1c12; }
+        .actions { white-space: nowrap; }
+    </style>
+</head>
+<body>
+<main>
+    {{end}}
+    {{define "foot"}}
+</main>
+</body>
+</html>{{end}}
